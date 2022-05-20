@@ -32,3 +32,21 @@ void MainWindow::on_pushButton_3_clicked()
     Robot.gotoGauche();
 }
 
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    Robot.stop();
+}
+
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    Robot.gotoDroite();
+}
+
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    Robot.gogogo();
+}
+

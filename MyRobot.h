@@ -15,9 +15,14 @@ public:
     void doConnect();
     void disConnect();
     void gotoGauche();
+    void gotoDroite();
+    void gogogo();
+    void crctosend();
+    void stop();
     QByteArray DataToSend;
     QByteArray DataReceived;
     QMutex Mutex;
+    char crc;
 
 signals:
     void updateUI(const QByteArray Data);
@@ -31,7 +36,6 @@ public slots:
 private:
     QTcpSocket *socket;
     QTimer *TimerEnvoi;
-    char crc;
 };
 
 #endif // MYROBOT_H
