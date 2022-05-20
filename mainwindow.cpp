@@ -26,3 +26,9 @@ void MainWindow::on_pushButton_2_clicked()
     Robot.disConnect();
 }
 
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    Robot.gotoGauche();
+}
+

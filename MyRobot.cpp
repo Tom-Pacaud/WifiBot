@@ -2,41 +2,57 @@
 
 #include "myrobot.h"
 
+
 short Crc16(unsigned char *Adresse_tab , unsigned char Taille_max)
 {
-unsigned int Crc = 0xFFFF;
-unsigned int Polynome = 0xA001;
-unsigned int CptOctet = 0;
-unsigned int CptBit = 0;
-unsigned int Parity= 0;
- Crc = 0xFFFF;
- Polynome = 0xA001;
-for ( CptOctet= 1 ; CptOctet < Taille_max ; CptOctet++)
- {
- Crc ^= *( Adresse_tab + CptOctet);
- for ( CptBit = 0; CptBit <= 7 ; CptBit++)
- {
- Parity= Crc;
- Crc >>= 1;
- if (Parity%2 == true) Crc ^= Polynome;
- }
- }
-return(Crc);
+    unsigned int Crc = 0xFFFF;
+    unsigned int Polynome = 0xA001;
+    unsigned int CptOctet = 0;
+    unsigned int CptBit = 0;
+    unsigned int Parity= 0;
+    Crc = 0xFFFF;
+    Polynome = 0xA001;
+    for ( CptOctet= 0 ; CptOctet < Taille_max ; CptOctet++)
+    {
+        Crc ^= *( Adresse_tab + CptOctet);
+        for ( CptBit = 0; CptBit <= 7 ; CptBit++)
+        {
+            Parity= Crc;
+            Crc >>= 1;
+            if (Parity%2 == true) Crc ^= Polynome;
+        }
+    }
+    return(Crc);
 }
 
 MyRobot::MyRobot(QObject *parent) : QObject(parent) {
     DataToSend.resize(9);
     DataToSend[0] = 0xFF;
     DataToSend[1] = 0x07;
-    DataToSend[2] = 120;
-    DataToSend[3] = 120;
-    DataToSend[4] = 120;
-    DataToSend[5] = 120;
+    DataToSend[2] = 0x00;
+    DataToSend[3] = 0x00;
+    DataToSend[4] = 0x00;
+    DataToSend[5] = 0x00;
     DataToSend[6] = 80;
-    unsigned char *in = (DataToSend);
-    short mycrc = Crc16(DataToSend,7);
-    DataToSend[7] = mycrc;
-    DataToSend[8] = (mycrc  >> 8);
+    unsigned char *dat=(unsigned char *)DataToSend.data();
+    short crc = Crc16(dat+1,6);
+    DataToSend[7] = (char) crc;
+    DataToSend[8] = (char) (crc >>8);
+    DataReceived.resize(21);
+    TimerEnvoi = new QTimer();
+    // setup signal and slot
+    connect(TimerEnvoi, SIGNAL(timeout()), this, SLOT(MyTimerSlot())); //Send data to wifibot timer
+}
+
+void MyRobot::gotoGauche(){
+    DataToSend[2] = 30;
+    DataToSend[3] = 30;
+    DataToSend[4] = 10;
+    DataToSend[5] = 10;
+    unsigned char *dat=(unsigned char *)DataToSend.data();
+    short crc = Crc16(dat+1,6);
+    DataToSend[7] = (char) crc;
+    DataToSend[8] = (char) (crc >>8);
     DataReceived.resize(21);
     TimerEnvoi = new QTimer();
     // setup signal and slot

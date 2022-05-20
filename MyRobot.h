@@ -14,6 +14,7 @@ public:
     explicit MyRobot(QObject *parent = 0);
     void doConnect();
     void disConnect();
+    void gotoGauche();
     QByteArray DataToSend;
     QByteArray DataReceived;
     QMutex Mutex;
@@ -30,6 +31,7 @@ public slots:
 private:
     QTcpSocket *socket;
     QTimer *TimerEnvoi;
+    char crc;
 };
 
 #endif // MYROBOT_H
