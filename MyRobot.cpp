@@ -1,6 +1,7 @@
 // myrobot.cpp
 
-#include "myrobot.h"
+#include "MyRobot.h"
+#include <windows.h>
 
 
 short Crc16(unsigned char *Adresse_tab , unsigned char Taille_max)
@@ -148,3 +149,27 @@ void MyRobot::MyTimerSlot() {
     socket->write(DataToSend);
     Mutex.unlock();
 }
+
+/*int GetData(Qt::HANDLE hUSB, Data *dataL, SensorData *dataR)
+{
+    DWORD n;
+    BYTE sbuf[30];
+    bool res=false;
+
+    do {
+        ReadFile(hUSB, &sbuf, 1, &n, NULL);
+    }while(sbuf[0]!=255);
+    res = ReadFile(hUSB, &sbuf, 21 , &n, NULL);
+    short mycrcrcv = (short)((sbuf[20] << 8) + sbuf[19]);
+    short mycrcsend = Crc16(sbuf,19);
+
+    if (mycrcrcv!=mycrcsend){
+        do {
+            ReadFile(hUSB, &sbuf, 1 , &n, NULL);
+        }while(sbuf[0]!=255);
+}
+else {
+    dataL->BatLevel=sbuf[2];
+}
+    return res;
+}*/
