@@ -50,3 +50,9 @@ void MainWindow::on_pushButton_6_clicked()
     Robot.gogogo();
 }
 
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    Robot.nonono();
+}
+

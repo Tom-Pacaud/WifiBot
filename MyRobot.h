@@ -17,6 +17,7 @@ public:
     void gotoGauche();
     void gotoDroite();
     void gogogo();
+    void nonono();
     void crctosend();
     void stop();
     QByteArray DataToSend;

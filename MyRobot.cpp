@@ -62,20 +62,30 @@ void MyRobot::gogogo(){
 
 }
 
-void MyRobot::gotoDroite(){
+void MyRobot::nonono(){
     DataToSend[2] = 100;
     DataToSend[3] = 100 >> 8;
     DataToSend[4] = 100;
     DataToSend[5] = 100 >> 8;
+    DataToSend[6] = 0;
+    crctosend();
+
+}
+
+void MyRobot::gotoDroite(){
+    DataToSend[2] = 150;
+    DataToSend[3] = 150 >> 8;
+    DataToSend[4] = 150;
+    DataToSend[5] = 150 >> 8;
     DataToSend[6] = 16;
     crctosend();
 }
 
 void MyRobot::gotoGauche(){
-    DataToSend[2] = 100;
-    DataToSend[3] = 100 >> 8;
-    DataToSend[4] = 100;
-    DataToSend[5] = 100 >> 8;
+    DataToSend[2] = 150;
+    DataToSend[3] = 150 >> 8;
+    DataToSend[4] = 150;
+    DataToSend[5] = 150 >> 8;
     DataToSend[6] = 64;
     crctosend();
 }
