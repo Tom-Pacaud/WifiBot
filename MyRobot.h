@@ -9,6 +9,8 @@
 #include <QMutex>
 #include <QWidget>
 #include <QWebEngineView>
+#include <QWidget>
+#include <QKeyEvent>
 
 class MyRobot : public QObject {
     Q_OBJECT
@@ -26,7 +28,6 @@ public:
     QByteArray DataReceived;
     QMutex Mutex;
     char crc;
-    //int GetData(Qt::HANDLE hUSB, SensorData *dataL, SensorData *dataR);
 
 signals:
     void updateUI(const QByteArray Data);

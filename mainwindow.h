@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "MyRobot.h"
 
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -30,6 +31,8 @@ private slots:
     void on_pushButton_6_clicked();
 
     void on_pushButton_7_clicked();
+
+    void updateUI(const QString &iconText);
 
 private:
     Ui::MainWindow *ui;
