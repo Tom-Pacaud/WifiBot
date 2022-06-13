@@ -21,60 +21,60 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Z)
     {
-        Robot.gogogo();
+        Robot.avancer();
     }
     if (event->key() == Qt::Key_S)
     {
-        Robot.nonono();
+        Robot.reculer();
     }
     if (event->key() == Qt::Key_Q)
     {
-        Robot.gotoGauche();
+        Robot.allerGauche();
     }
     if (event->key() == Qt::Key_D)
     {
-        Robot.gotoDroite();
+        Robot.allerDroite();
     }
 }
 
 
-void MainWindow::buttonConnect_clicked()
+void MainWindow::on_buttonConnect_clicked()
 {
     Robot.doConnect();
 }
 
 
-void MainWindow::buttonDisconnect_clicked()
+void MainWindow::on_buttonDisconnect_clicked()
 {
     Robot.disConnect();
 }
 
 
-void MainWindow::buttonGauche_clicked()
+void MainWindow::on_buttonGauche_clicked()
 {
     Robot.allerGauche();
 }
 
 
-void MainWindow::buttonStop_clicked()
+void MainWindow::on_buttonStop_clicked()
 {
     Robot.stop();
 }
 
 
-void MainWindow::buttonDroite_clicked()
+void MainWindow::on_buttonDroite_clicked()
 {
     Robot.allerDroite();
 }
 
 
-void MainWindow::buttonAvancer_clicked()
+void MainWindow::on_buttonAvancer_clicked()
 {
     Robot.avancer();
 }
 
 
-void MainWindow::buttonReculer_clicked()
+void MainWindow::on_buttonReculer_clicked()
 {
     Robot.reculer();
 }
@@ -91,4 +91,5 @@ void MainWindow::updateUI(const QString &iconText)
         ui->batterie->setText(QString((256 + int (Robot.DataReceived[2]))*100/256));
     }
 }
+
 

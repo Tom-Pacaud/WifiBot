@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="buttonConnect">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -27,7 +27,7 @@
      <string>Connect</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="buttonDisconnect">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -40,7 +40,7 @@
      <string>Disconnect</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="buttonGauche">
     <property name="geometry">
      <rect>
       <x>360</x>
@@ -53,7 +53,7 @@
      <string>Gauche</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="buttonStop">
     <property name="geometry">
      <rect>
       <x>470</x>
@@ -66,7 +66,7 @@
      <string>Stop</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="buttonDroite">
     <property name="geometry">
      <rect>
       <x>580</x>
@@ -79,7 +79,7 @@
      <string>Droite</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_6">
+   <widget class="QPushButton" name="buttonAvancer">
     <property name="geometry">
      <rect>
       <x>470</x>
@@ -92,7 +92,7 @@
      <string>Avancer</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_7">
+   <widget class="QPushButton" name="buttonReculer">
     <property name="geometry">
      <rect>
       <x>470</x>

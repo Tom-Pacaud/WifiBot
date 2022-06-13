@@ -55,7 +55,7 @@ void MyRobot::crctosend(){
 }
 
 
-void MyRobot::gogogo(){
+void MyRobot::avancer(){
     DataToSend[2] = 100;
     DataToSend[3] = 100 >> 8;
     DataToSend[4] = 100;
@@ -65,7 +65,7 @@ void MyRobot::gogogo(){
 
 }
 
-void MyRobot::nonono(){
+void MyRobot::reculer(){
     DataToSend[2] = 100;
     DataToSend[3] = 100 >> 8;
     DataToSend[4] = 100;
@@ -75,7 +75,7 @@ void MyRobot::nonono(){
 
 }
 
-void MyRobot::gotoDroite(){
+void MyRobot::allerDroite(){
     DataToSend[2] = 150;
     DataToSend[3] = 150 >> 8;
     DataToSend[4] = 150;
@@ -84,7 +84,7 @@ void MyRobot::gotoDroite(){
     crctosend();
 }
 
-void MyRobot::gotoGauche(){
+void MyRobot::allerGauche(){
     DataToSend[2] = 150;
     DataToSend[3] = 150 >> 8;
     DataToSend[4] = 150;

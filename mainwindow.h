@@ -18,19 +18,19 @@ public:
     ~MainWindow();
 
 private slots:
-    void buttonConnect_clicked();
+    void on_buttonConnect_clicked();
 
-    void buttonDisconnect_clicked();
+    void on_buttonDisconnect_clicked();
 
-    void buttonGauche_clicked();
+    void on_buttonGauche_clicked();
 
-    void buttonStop_clicked();
+    void on_buttonStop_clicked();
 
-    void buttonDroite_clicked();
+    void on_buttonDroite_clicked();
 
-    void buttonAvancer_clicked();
+    void on_buttonAvancer_clicked();
 
-    void buttonReculer_clicked();
+    void on_buttonReculer_clicked();
 	
 	void keyPressEvent(QKeyEvent *event);
 
