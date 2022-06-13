@@ -1,6 +1,9 @@
 // myrobot.cpp
 
-#include "myrobot.h"
+#include "MyRobot.h"
+#include "ui_mainwindow.h"
+#include <windows.h>
+#include "mainwindow.h"
 
 
 short Crc16(unsigned char *Adresse_tab , unsigned char Taille_max)
@@ -52,7 +55,7 @@ void MyRobot::crctosend(){
 }
 
 
-void MyRobot::gogogo(){
+void MyRobot::avancer(){
     DataToSend[2] = 100;
     DataToSend[3] = 100 >> 8;
     DataToSend[4] = 100;
@@ -62,7 +65,7 @@ void MyRobot::gogogo(){
 
 }
 
-void MyRobot::nonono(){
+void MyRobot::reculer(){
     DataToSend[2] = 100;
     DataToSend[3] = 100 >> 8;
     DataToSend[4] = 100;
@@ -72,7 +75,7 @@ void MyRobot::nonono(){
 
 }
 
-void MyRobot::gotoDroite(){
+void MyRobot::allerDroite(){
     DataToSend[2] = 150;
     DataToSend[3] = 150 >> 8;
     DataToSend[4] = 150;
@@ -81,7 +84,7 @@ void MyRobot::gotoDroite(){
     crctosend();
 }
 
-void MyRobot::gotoGauche(){
+void MyRobot::allerGauche(){
     DataToSend[2] = 150;
     DataToSend[3] = 150 >> 8;
     DataToSend[4] = 150;
@@ -136,10 +139,9 @@ void MyRobot::bytesWritten(qint64 bytes) {
 }
 
 void MyRobot::readyRead() {
-    qDebug() << "reading..."; // read the data from the socket
     DataReceived = socket->readAll();
     emit updateUI(DataReceived);
-    qDebug() << DataReceived[0] << DataReceived[1] << DataReceived[2];
+
 }
 
 void MyRobot::MyTimerSlot() {
@@ -148,3 +150,4 @@ void MyRobot::MyTimerSlot() {
     socket->write(DataToSend);
     Mutex.unlock();
 }
+
