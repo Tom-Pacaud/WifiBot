@@ -31,6 +31,8 @@ private slots:
     void buttonAvancer_clicked();
 
     void buttonReculer_clicked();
+	
+	void keyPressEvent(QKeyEvent *event);
 
     void updateUI(const QString &iconText);
 

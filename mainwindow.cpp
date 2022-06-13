@@ -17,6 +17,26 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    if (event->key() == Qt::Key_Z)
+    {
+        Robot.gogogo();
+    }
+    if (event->key() == Qt::Key_S)
+    {
+        Robot.nonono();
+    }
+    if (event->key() == Qt::Key_Q)
+    {
+        Robot.gotoGauche();
+    }
+    if (event->key() == Qt::Key_D)
+    {
+        Robot.gotoDroite();
+    }
+}
+
 
 void MainWindow::buttonConnect_clicked()
 {
