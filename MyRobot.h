@@ -24,6 +24,10 @@ public:
     void reculer();
     void crctosend();
     void stop();
+    void camGauche();
+    void camDroite();
+    void camHaut();
+    void camBas();
     QByteArray DataToSend;
     QByteArray DataReceived;
     QMutex Mutex;
@@ -41,6 +45,7 @@ public slots:
 private:
     QTcpSocket *socket;
     QTimer *TimerEnvoi;
+    QNetworkAccessManager *Camera;
 };
 
 #endif // MYROBOT_H

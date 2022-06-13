@@ -35,17 +35,15 @@ private slots:
 
     void affichage(QByteArray data);
 
-    void on_pushButton_3_clicked();
-
-    void on_pushButton_4_clicked();
-
-    void on_pushButton_5_clicked();
-
-    void on_pushButton_6_clicked();
-
-    void on_pushButton_7_clicked();
-
     void keyPressEvent(QKeyEvent *event);
+
+    void on_Hautcam_clicked();
+
+    void on_Bascam_clicked();
+
+    void on_Gauchecam_clicked();
+
+    void on_Droitecam_clicked();
 
 private:
     Ui::MainWindow *ui;

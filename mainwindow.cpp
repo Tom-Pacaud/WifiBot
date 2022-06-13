@@ -21,19 +21,19 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Z)
     {
-        Robot.gogogo();
+        Robot.avancer();
     }
     if (event->key() == Qt::Key_S)
     {
-        Robot.nonono();
+        Robot.reculer();
     }
     if (event->key() == Qt::Key_Q)
     {
-        Robot.gotoGauche();
+        Robot.allerGauche();
     }
     if (event->key() == Qt::Key_D)
     {
-        Robot.gotoDroite();
+        Robot.allerDroite();
     }
 }
 
@@ -86,5 +86,26 @@ void MainWindow::affichage(QByteArray data)
     qDebug() << bat;
     bat = bat/4;
     ui->lcdBatterie->display(int(bat));
+}
+
+
+void MainWindow::on_Hautcam_clicked()
+{
+    Robot.camHaut();
+}
+
+void MainWindow::on_Bascam_clicked()
+{
+    Robot.camBas();
+}
+
+void MainWindow::on_Gauchecam_clicked()
+{
+    Robot.camGauche();
+}
+
+void MainWindow::on_Droitecam_clicked()
+{
+   Robot.camDroite();
 }
 

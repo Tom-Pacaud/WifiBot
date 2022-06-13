@@ -102,6 +102,21 @@ void MyRobot::stop(){
     crctosend();
 }
 
+void MyRobot::camGauche(){
+    this->Camera->get(QNetworkRequest(QUrl("http://192.168.1.106:8080/?action=command&dest=0&plugin=0&id=10094852&group=1&value=200")));
+}
+
+void MyRobot::camDroite(){
+    this->Camera->get(QNetworkRequest(QUrl("http://192.168.1.106:8080/?action=command&dest=0&plugin=0&id=10094852&group=1&value=-200")));
+}
+
+void MyRobot::camHaut(){
+    this->Camera->get(QNetworkRequest(QUrl("http://192.168.1.106:8080/?action=command&dest=0&plugin=0&id=10094853&group=1&value=-200")));
+}
+
+void MyRobot::camBas(){
+    this->Camera->get(QNetworkRequest(QUrl("http://192.168.1.106:8080/?action=command&dest=0&plugin=0&id=10094853&group=1&value=200")));
+}
 
 void MyRobot::doConnect() {
     socket = new QTcpSocket(this); // socket creation

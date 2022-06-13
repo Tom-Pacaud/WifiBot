@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>1015</width>
     <height>600</height>
    </rect>
   </property>
@@ -17,8 +17,8 @@
    <widget class="QPushButton" name="buttonConnect">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>60</y>
+      <x>40</x>
+      <y>40</y>
       <width>80</width>
       <height>24</height>
      </rect>
@@ -30,8 +30,8 @@
    <widget class="QPushButton" name="buttonDisconnect">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>100</y>
+      <x>140</x>
+      <y>40</y>
       <width>80</width>
       <height>24</height>
      </rect>
@@ -43,7 +43,7 @@
    <widget class="QPushButton" name="buttonGauche">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>470</x>
       <y>80</y>
       <width>93</width>
       <height>29</height>
@@ -56,7 +56,7 @@
    <widget class="QPushButton" name="buttonStop">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>580</x>
       <y>80</y>
       <width>93</width>
       <height>29</height>
@@ -69,7 +69,7 @@
    <widget class="QPushButton" name="buttonDroite">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>690</x>
       <y>80</y>
       <width>93</width>
       <height>29</height>
@@ -82,7 +82,7 @@
    <widget class="QPushButton" name="buttonAvancer">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>580</x>
       <y>40</y>
       <width>93</width>
       <height>29</height>
@@ -95,7 +95,7 @@
    <widget class="QPushButton" name="buttonReculer">
     <property name="geometry">
      <rect>
-      <x>470</x>
+      <x>580</x>
       <y>120</y>
       <width>93</width>
       <height>29</height>
@@ -108,8 +108,8 @@
    <widget class="QWebEngineView" name="widget" native="true">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>210</y>
+      <x>40</x>
+      <y>90</y>
       <width>361</width>
       <height>281</height>
      </rect>
@@ -118,11 +118,76 @@
    <widget class="QLCDNumber" name="lcdBatterie">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>150</y>
+      <x>310</x>
+      <y>40</y>
       <width>64</width>
       <height>23</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Hautcam">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>200</y>
+      <width>93</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Haut</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Gauchecam">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>240</y>
+      <width>93</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Gauche</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Bascam">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>280</y>
+      <width>93</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Bas</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Droitecam">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>240</y>
+      <width>93</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Droite</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>240</y>
+      <width>93</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Camera</string>
     </property>
    </widget>
   </widget>
@@ -131,7 +196,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1015</width>
      <height>26</height>
     </rect>
    </property>
