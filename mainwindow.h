@@ -18,19 +18,19 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
+    void buttonConnect_clicked();
 
-    void on_pushButton_2_clicked();
+    void buttonDisconnect_clicked();
 
-    void on_pushButton_3_clicked();
+    void buttonGauche_clicked();
 
-    void on_pushButton_4_clicked();
+    void buttonStop_clicked();
 
-    void on_pushButton_5_clicked();
+    void buttonDroite_clicked();
 
-    void on_pushButton_6_clicked();
+    void buttonAvancer_clicked();
 
-    void on_pushButton_7_clicked();
+    void buttonReculer_clicked();
 
     void updateUI(const QString &iconText);
 

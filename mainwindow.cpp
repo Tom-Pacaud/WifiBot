@@ -18,45 +18,45 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::buttonConnect_clicked()
 {
     Robot.doConnect();
 }
 
 
-void MainWindow::on_pushButton_2_clicked()
+void MainWindow::buttonDisconnect_clicked()
 {
     Robot.disConnect();
 }
 
 
-void MainWindow::on_pushButton_3_clicked()
+void MainWindow::buttonGauche_clicked()
 {
-    Robot.gotoGauche();
+    Robot.allerGauche();
 }
 
 
-void MainWindow::on_pushButton_4_clicked()
+void MainWindow::buttonStop_clicked()
 {
     Robot.stop();
 }
 
 
-void MainWindow::on_pushButton_5_clicked()
+void MainWindow::buttonDroite_clicked()
 {
-    Robot.gotoDroite();
+    Robot.allerDroite();
 }
 
 
-void MainWindow::on_pushButton_6_clicked()
+void MainWindow::buttonAvancer_clicked()
 {
-    Robot.gogogo();
+    Robot.avancer();
 }
 
 
-void MainWindow::on_pushButton_7_clicked()
+void MainWindow::buttonReculer_clicked()
 {
-    Robot.nonono();
+    Robot.reculer();
 }
 
 

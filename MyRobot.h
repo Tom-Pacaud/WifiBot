@@ -18,10 +18,10 @@ public:
     explicit MyRobot(QObject *parent = 0);
     void doConnect();
     void disConnect();
-    void gotoGauche();
-    void gotoDroite();
-    void gogogo();
-    void nonono();
+    void allerGauche();
+    void allerDroite();
+    void avancer();
+    void reculer();
     void crctosend();
     void stop();
     QByteArray DataToSend;
