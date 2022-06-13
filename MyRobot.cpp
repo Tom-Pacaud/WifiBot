@@ -1,46 +1,103 @@
 // myrobot.cpp
 
-#include "myrobot.h"
+#include "MyRobot.h"
+#include <windows.h>
+
 
 short Crc16(unsigned char *Adresse_tab , unsigned char Taille_max)
 {
-unsigned int Crc = 0xFFFF;
-unsigned int Polynome = 0xA001;
-unsigned int CptOctet = 0;
-unsigned int CptBit = 0;
-unsigned int Parity= 0;
- Crc = 0xFFFF;
- Polynome = 0xA001;
-for ( CptOctet= 1 ; CptOctet < Taille_max ; CptOctet++)
- {
- Crc ^= *( Adresse_tab + CptOctet);
- for ( CptBit = 0; CptBit <= 7 ; CptBit++)
- {
- Parity= Crc;
- Crc >>= 1;
- if (Parity%2 == true) Crc ^= Polynome;
- }
- }
-return(Crc);
+    unsigned int Crc = 0xFFFF;
+    unsigned int Polynome = 0xA001;
+    unsigned int CptOctet = 0;
+    unsigned int CptBit = 0;
+    unsigned int Parity= 0;
+    Crc = 0xFFFF;
+    Polynome = 0xA001;
+    for ( CptOctet= 0 ; CptOctet < Taille_max ; CptOctet++)
+    {
+        Crc ^= *( Adresse_tab + CptOctet);
+        for ( CptBit = 0; CptBit <= 7 ; CptBit++)
+        {
+            Parity= Crc;
+            Crc >>= 1;
+            if (Parity%2 == true) Crc ^= Polynome;
+        }
+    }
+    return(Crc);
 }
 
 MyRobot::MyRobot(QObject *parent) : QObject(parent) {
     DataToSend.resize(9);
     DataToSend[0] = 0xFF;
     DataToSend[1] = 0x07;
-    DataToSend[2] = 120;
-    DataToSend[3] = 120;
-    DataToSend[4] = 120;
-    DataToSend[5] = 120;
-    DataToSend[6] = 80;
-    unsigned char *in = (DataToSend);
-    short mycrc = Crc16(DataToSend,7);
-    DataToSend[7] = mycrc;
-    DataToSend[8] = (mycrc  >> 8);
+    DataToSend[2] = 0x00;
+    DataToSend[3] = 0x00;
+    DataToSend[4] = 0x00;
+    DataToSend[5] = 0x00;
+    DataToSend[6] = 0x00;
+    DataToSend[7] = 0x00;
+    DataToSend[8] = 0x00;
     DataReceived.resize(21);
     TimerEnvoi = new QTimer();
     // setup signal and slot
     connect(TimerEnvoi, SIGNAL(timeout()), this, SLOT(MyTimerSlot())); //Send data to wifibot timer
+}
+
+void MyRobot::crctosend(){
+    unsigned char *dat=(unsigned char *)DataToSend.data();
+    short crc = Crc16(dat+1,6);
+    DataToSend[7] = (char) crc;
+    DataToSend[8] = (char) (crc >>8);
+    DataReceived.resize(21);
+    // setup signal and slot
+}
+
+
+void MyRobot::gogogo(){
+    DataToSend[2] = 100;
+    DataToSend[3] = 100 >> 8;
+    DataToSend[4] = 100;
+    DataToSend[5] = 100 >> 8;
+    DataToSend[6] = 80;
+    crctosend();
+
+}
+
+void MyRobot::nonono(){
+    DataToSend[2] = 100;
+    DataToSend[3] = 100 >> 8;
+    DataToSend[4] = 100;
+    DataToSend[5] = 100 >> 8;
+    DataToSend[6] = 0;
+    crctosend();
+
+}
+
+void MyRobot::gotoDroite(){
+    DataToSend[2] = 150;
+    DataToSend[3] = 150 >> 8;
+    DataToSend[4] = 150;
+    DataToSend[5] = 150 >> 8;
+    DataToSend[6] = 16;
+    crctosend();
+}
+
+void MyRobot::gotoGauche(){
+    DataToSend[2] = 150;
+    DataToSend[3] = 150 >> 8;
+    DataToSend[4] = 150;
+    DataToSend[5] = 150 >> 8;
+    DataToSend[6] = 64;
+    crctosend();
+}
+
+void MyRobot::stop(){
+    DataToSend[2] = 0x00;
+    DataToSend[3] = 0x00;
+    DataToSend[4] = 0x00;
+    DataToSend[5] = 0x00;
+    DataToSend[6] = 80;
+    crctosend();
 }
 
 
@@ -92,3 +149,27 @@ void MyRobot::MyTimerSlot() {
     socket->write(DataToSend);
     Mutex.unlock();
 }
+
+/*int GetData(Qt::HANDLE hUSB, Data *dataL, SensorData *dataR)
+{
+    DWORD n;
+    BYTE sbuf[30];
+    bool res=false;
+
+    do {
+        ReadFile(hUSB, &sbuf, 1, &n, NULL);
+    }while(sbuf[0]!=255);
+    res = ReadFile(hUSB, &sbuf, 21 , &n, NULL);
+    short mycrcrcv = (short)((sbuf[20] << 8) + sbuf[19]);
+    short mycrcsend = Crc16(sbuf,19);
+
+    if (mycrcrcv!=mycrcsend){
+        do {
+            ReadFile(hUSB, &sbuf, 1 , &n, NULL);
+        }while(sbuf[0]!=255);
+}
+else {
+    dataL->BatLevel=sbuf[2];
+}
+    return res;
+}*/
