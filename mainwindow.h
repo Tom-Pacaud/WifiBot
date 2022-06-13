@@ -5,6 +5,7 @@
 #include <QKeyEvent>
 #include "MyRobot.h"
 
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -18,9 +19,21 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_buttonConnect_clicked();
 
-    void on_pushButton_2_clicked();
+    void on_buttonDisconnect_clicked();
+
+    void on_buttonGauche_clicked();
+
+    void on_buttonStop_clicked();
+
+    void on_buttonDroite_clicked();
+
+    void on_buttonAvancer_clicked();
+
+    void on_buttonReculer_clicked();
+
+    void affichage(QByteArray data);
 
     void on_pushButton_3_clicked();
 

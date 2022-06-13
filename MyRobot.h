@@ -9,6 +9,8 @@
 #include <QMutex>
 #include <QWidget>
 #include <QWebEngineView>
+#include <QWidget>
+#include <QKeyEvent>
 
 class MyRobot : public QObject {
     Q_OBJECT
@@ -16,17 +18,16 @@ public:
     explicit MyRobot(QObject *parent = 0);
     void doConnect();
     void disConnect();
-    void gotoGauche();
-    void gotoDroite();
-    void gogogo();
-    void nonono();
+    void allerGauche();
+    void allerDroite();
+    void avancer();
+    void reculer();
     void crctosend();
     void stop();
     QByteArray DataToSend;
     QByteArray DataReceived;
     QMutex Mutex;
     char crc;
-    //int GetData(Qt::HANDLE hUSB, SensorData *dataL, SensorData *dataR);
 
 signals:
     void updateUI(const QByteArray Data);

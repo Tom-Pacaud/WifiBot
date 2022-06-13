@@ -1,7 +1,9 @@
 // myrobot.cpp
 
 #include "MyRobot.h"
+#include "ui_mainwindow.h"
 #include <windows.h>
+#include "mainwindow.h"
 
 
 short Crc16(unsigned char *Adresse_tab , unsigned char Taille_max)
@@ -53,7 +55,7 @@ void MyRobot::crctosend(){
 }
 
 
-void MyRobot::gogogo(){
+void MyRobot::avancer(){
     DataToSend[2] = 100;
     DataToSend[3] = 100 >> 8;
     DataToSend[4] = 100;
@@ -63,7 +65,7 @@ void MyRobot::gogogo(){
 
 }
 
-void MyRobot::nonono(){
+void MyRobot::reculer(){
     DataToSend[2] = 100;
     DataToSend[3] = 100 >> 8;
     DataToSend[4] = 100;
@@ -73,7 +75,7 @@ void MyRobot::nonono(){
 
 }
 
-void MyRobot::gotoDroite(){
+void MyRobot::allerDroite(){
     DataToSend[2] = 150;
     DataToSend[3] = 150 >> 8;
     DataToSend[4] = 150;
@@ -82,7 +84,7 @@ void MyRobot::gotoDroite(){
     crctosend();
 }
 
-void MyRobot::gotoGauche(){
+void MyRobot::allerGauche(){
     DataToSend[2] = 150;
     DataToSend[3] = 150 >> 8;
     DataToSend[4] = 150;
@@ -137,10 +139,9 @@ void MyRobot::bytesWritten(qint64 bytes) {
 }
 
 void MyRobot::readyRead() {
-    qDebug() << "reading..."; // read the data from the socket
     DataReceived = socket->readAll();
     emit updateUI(DataReceived);
-    qDebug() << DataReceived[0] << DataReceived[1] << DataReceived[2];
+
 }
 
 void MyRobot::MyTimerSlot() {
@@ -150,26 +151,3 @@ void MyRobot::MyTimerSlot() {
     Mutex.unlock();
 }
 
-/*int GetData(Qt::HANDLE hUSB, Data *dataL, SensorData *dataR)
-{
-    DWORD n;
-    BYTE sbuf[30];
-    bool res=false;
-
-    do {
-        ReadFile(hUSB, &sbuf, 1, &n, NULL);
-    }while(sbuf[0]!=255);
-    res = ReadFile(hUSB, &sbuf, 21 , &n, NULL);
-    short mycrcrcv = (short)((sbuf[20] << 8) + sbuf[19]);
-    short mycrcsend = Crc16(sbuf,19);
-
-    if (mycrcrcv!=mycrcsend){
-        do {
-            ReadFile(hUSB, &sbuf, 1 , &n, NULL);
-        }while(sbuf[0]!=255);
-}
-else {
-    dataL->BatLevel=sbuf[2];
-}
-    return res;
-}*/

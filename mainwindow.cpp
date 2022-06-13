@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <windows.h>
 #include "MyRobot.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -8,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->widget->load(QUrl(QString("http://192.168.1.106:8080/?action=stream")));
+    connect(&Robot, SIGNAL(updateUI(QByteArray)),this, SLOT(affichage(QByteArray)));
 }
 
 MainWindow::~MainWindow()
@@ -35,43 +37,54 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     }
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_buttonConnect_clicked()
 {
     Robot.doConnect();
 }
 
 
-void MainWindow::on_pushButton_2_clicked()
+void MainWindow::on_buttonDisconnect_clicked()
 {
     Robot.disConnect();
 }
 
 
-void MainWindow::on_pushButton_3_clicked()
+void MainWindow::on_buttonGauche_clicked()
 {
-    Robot.gotoGauche();
+    Robot.allerGauche();
 }
 
 
-void MainWindow::on_pushButton_4_clicked()
+void MainWindow::on_buttonStop_clicked()
 {
     Robot.stop();
 }
 
 
-void MainWindow::on_pushButton_5_clicked()
+void MainWindow::on_buttonDroite_clicked()
 {
-    Robot.gotoDroite();
+    Robot.allerDroite();
 }
 
 
-void MainWindow::on_pushButton_6_clicked()
+void MainWindow::on_buttonAvancer_clicked()
 {
-    Robot.gogogo();
+    Robot.avancer();
 }
 
 
-void MainWindow::on_pushButton_7_clicked()
+void MainWindow::on_buttonReculer_clicked()
 {
-    Robot.nonono();
+    Robot.reculer();
 }
+
+
+void MainWindow::affichage(QByteArray data)
+{
+    // Affichage batterie
+    float bat = float(data[2] << 2);
+    qDebug() << bat;
+    bat = bat/4;
+    ui->lcdBatterie->display(int(bat));
+}
+
