@@ -35,6 +35,22 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     {
         Robot.allerDroite();
     }
+    if (event->key() == Qt::Key_O)
+    {
+        Robot.camHaut();
+    }
+    if (event->key() == Qt::Key_L)
+    {
+        Robot.camBas();
+    }
+    if (event->key() == Qt::Key_K)
+    {
+        Robot.camGauche();
+    }
+    if (event->key() == Qt::Key_M)
+    {
+        Robot.camDroite();
+    }
 }
 
 void MainWindow::on_buttonConnect_clicked()
