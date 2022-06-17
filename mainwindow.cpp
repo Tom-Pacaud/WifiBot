@@ -94,17 +94,6 @@ void MainWindow::on_buttonReculer_clicked()
     Robot.reculer();
 }
 
-
-void MainWindow::affichage(QByteArray data)
-{
-    // Affichage batterie
-    float bat = float(data[2] << 2);
-    qDebug() << bat;
-    bat = bat/4;
-    ui->lcdBatterie->display(int(bat));
-}
-
-
 void MainWindow::on_Hautcam_clicked()
 {
     Robot.camHaut();
@@ -125,3 +114,40 @@ void MainWindow::on_Droitecam_clicked()
    Robot.camDroite();
 }
 
+void MainWindow::affichage(QByteArray data)
+{
+    // Affichage batterie
+    unsigned char dataBat = (data[2] >> 2);
+    float bat = float(dataBat);
+    if (bat > 125){
+        ui->lcdBatterie->display(100);
+    }
+    else{
+        ui->lcdBatterie->display(int(bat)*100/128);
+    }
+
+    // Affichage Vitesse
+    float vit = float(-data[1] >> 8);
+    ui->lcdVitesse->display(int(vit));
+
+    // Affichage Infrarouges
+    unsigned char dataInfraDroite = data[4];
+    float infraDroite = float(dataInfraDroite);
+    ui->lcdInfraDroite->display(int(infraDroite));
+    float infraHaut = float(data[11]);
+    ui->lcdInfraHaut->display(int(infraHaut));
+    float infraGauche = float(data[3]);
+    ui->lcdInfraGauche->display(int(infraGauche));
+    float infraBas = float(data[12]);
+    ui->lcdInfraBas->display(int(infraBas));
+
+    // Affichage Position
+
+    float odometryL = ((((long)data[8] << 24)) + (((long)data[7] << 16)) + (((long)data[6] <<8)) + ((long)data[5]));
+    ui->lcdPosL->display(int(odometryL));
+
+    float odometryR = ((((long)data[16] << 24)) + (((long)data[15] << 16)) + (((long)data[14] << 8)) + ((long)data[13]));
+    ui->lcdPosR->display(int(odometryR));
+
+
+}
