@@ -43,6 +43,8 @@ MyRobot::MyRobot(QObject *parent) : QObject(parent) {
     TimerEnvoi = new QTimer();
     // setup signal and slot
     connect(TimerEnvoi, SIGNAL(timeout()), this, SLOT(MyTimerSlot())); //Send data to wifibot timer
+
+    Camera=new QNetworkAccessManager();
 }
 
 void MyRobot::crctosend(){
@@ -80,7 +82,7 @@ void MyRobot::allerDroite(){
     DataToSend[3] = 150 >> 8;
     DataToSend[4] = 150;
     DataToSend[5] = 150 >> 8;
-    DataToSend[6] = 16;
+    DataToSend[6] = 64;
     crctosend();
 }
 
@@ -89,7 +91,7 @@ void MyRobot::allerGauche(){
     DataToSend[3] = 150 >> 8;
     DataToSend[4] = 150;
     DataToSend[5] = 150 >> 8;
-    DataToSend[6] = 64;
+    DataToSend[6] = 16;
     crctosend();
 }
 
