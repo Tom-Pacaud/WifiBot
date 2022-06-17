@@ -17,6 +17,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+//Contrôle du robot et de la caméra avec les différentes touche du clavier
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Z)
@@ -57,62 +58,67 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     }
 }
 
+//Bouton de connection
 void MainWindow::on_buttonConnect_clicked()
 {
     Robot.doConnect();
 }
 
-
+//Bouton de déconnection
 void MainWindow::on_buttonDisconnect_clicked()
 {
     Robot.disConnect();
 }
 
-
+//Le robot va à gauche lorsqu'on clique sur le bouton
 void MainWindow::on_buttonGauche_clicked()
 {
     Robot.allerGauche();
 }
 
-
+//Le robot s'arrête lorsqu'on clique sur le bouton
 void MainWindow::on_buttonStop_clicked()
 {
     Robot.stop();
 }
 
-
+//Le robot va à droite lorsqu'on clique sur le bouton
 void MainWindow::on_buttonDroite_clicked()
 {
     Robot.allerDroite();
 }
 
-
+//Le robot avance lorsque l'on clique sur le bouton
 void MainWindow::on_buttonAvancer_clicked()
 {
     Robot.avancer();
 }
 
-
+//Le robot recule lorsqu'on clique sur le bouton
 void MainWindow::on_buttonReculer_clicked()
 {
     Robot.reculer();
 }
 
+//Déplacement de la caméra vers le haut lorsqu'on clique sur le bouton
 void MainWindow::on_Hautcam_clicked()
 {
     Robot.camHaut();
 }
 
+//Déplacement de la caméra vers le bas lorsqu'on clique sur le bouton
 void MainWindow::on_Bascam_clicked()
 {
     Robot.camBas();
 }
 
+//Déplacement de la caméra vers la gauche lorsqu'on clique sur le bouton
 void MainWindow::on_Gauchecam_clicked()
 {
     Robot.camGauche();
 }
 
+//Déplacement de la caméra vers la droite lorsqu'on clique sur le bouton
 void MainWindow::on_Droitecam_clicked()
 {
    Robot.camDroite();
@@ -123,7 +129,7 @@ void MainWindow::affichage(QByteArray data)
     // Affichage batterie
     unsigned char dataBat = (data[2] >> 2);
     float bat = float(dataBat);
-    if (bat > 125){
+    if (bat > 125){ // Vérifie si le robot est branché -> affiche 100%
         ui->lcdBatterie->display(100);
     }
     else{

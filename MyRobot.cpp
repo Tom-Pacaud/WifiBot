@@ -5,7 +5,7 @@
 #include <windows.h>
 #include "mainwindow.h"
 
-
+//Fonction de création du crc
 short Crc16(unsigned char *Adresse_tab , unsigned char Taille_max)
 {
     unsigned int Crc = 0xFFFF;
@@ -28,6 +28,7 @@ short Crc16(unsigned char *Adresse_tab , unsigned char Taille_max)
     return(Crc);
 }
 
+//Constructeur de l'objet MyRobot
 MyRobot::MyRobot(QObject *parent) : QObject(parent) {
     DataToSend.resize(9);
     DataToSend[0] = 0xFF;
@@ -47,6 +48,7 @@ MyRobot::MyRobot(QObject *parent) : QObject(parent) {
     Camera=new QNetworkAccessManager();
 }
 
+//Fonction d'envoie du crc
 void MyRobot::crctosend(){
     unsigned char *dat=(unsigned char *)DataToSend.data();
     short crc = Crc16(dat+1,6);
@@ -56,7 +58,7 @@ void MyRobot::crctosend(){
     // setup signal and slot
 }
 
-
+//Focntion faisant avancer le robot
 void MyRobot::avancer(){
     DataToSend[2] = 100;
     DataToSend[3] = 100 >> 8;
@@ -67,6 +69,7 @@ void MyRobot::avancer(){
 
 }
 
+//Focntion faisant reculer le robot
 void MyRobot::reculer(){
     DataToSend[2] = 100;
     DataToSend[3] = 100 >> 8;
@@ -77,6 +80,7 @@ void MyRobot::reculer(){
 
 }
 
+//Focntion faisant aller le robot à droite
 void MyRobot::allerDroite(){
     DataToSend[2] = 150;
     DataToSend[3] = 150 >> 8;
@@ -86,6 +90,7 @@ void MyRobot::allerDroite(){
     crctosend();
 }
 
+//Focntion faisant aller le robot à gauche
 void MyRobot::allerGauche(){
     DataToSend[2] = 150;
     DataToSend[3] = 150 >> 8;
@@ -95,6 +100,7 @@ void MyRobot::allerGauche(){
     crctosend();
 }
 
+//Focntion faisant s'arrêter le robot
 void MyRobot::stop(){
     DataToSend[2] = 0x00;
     DataToSend[3] = 0x00;
@@ -104,22 +110,27 @@ void MyRobot::stop(){
     crctosend();
 }
 
+//Fonction permettant à la caméra de tourner vers la gauche
 void MyRobot::camGauche(){
     this->Camera->get(QNetworkRequest(QUrl("http://192.168.1.106:8080/?action=command&dest=0&plugin=0&id=10094852&group=1&value=200")));
 }
 
+//Fonction permettant à la caméra de tourner vers la droite
 void MyRobot::camDroite(){
     this->Camera->get(QNetworkRequest(QUrl("http://192.168.1.106:8080/?action=command&dest=0&plugin=0&id=10094852&group=1&value=-200")));
 }
 
+//Fonction permettant à la caméra de tourner vers le haut
 void MyRobot::camHaut(){
     this->Camera->get(QNetworkRequest(QUrl("http://192.168.1.106:8080/?action=command&dest=0&plugin=0&id=10094853&group=1&value=-200")));
 }
 
+//Fonction permettant à la caméra de tourner vers le bas
 void MyRobot::camBas(){
     this->Camera->get(QNetworkRequest(QUrl("http://192.168.1.106:8080/?action=command&dest=0&plugin=0&id=10094853&group=1&value=200")));
 }
 
+//Fonction de connection au robot
 void MyRobot::doConnect() {
     socket = new QTcpSocket(this); // socket creation
     connect(socket, SIGNAL(connected()),this, SLOT(connected()));
@@ -138,13 +149,16 @@ void MyRobot::doConnect() {
 
 }
 
+//Fonction de décoonection au robot
 void MyRobot::disConnect() {
     TimerEnvoi->stop();
     socket->close();
 }
 
+// Fonction de débug en console
+
 void MyRobot::connected() {
-    qDebug() << "connected..."; // Hey server, tell me about you.
+    qDebug() << "connected...";
 }
 
 void MyRobot::disconnected() {
@@ -155,9 +169,9 @@ void MyRobot::bytesWritten(qint64 bytes) {
     qDebug() << bytes << " bytes written...";
 }
 
-void MyRobot::readyRead() {
-    DataReceived = socket->readAll();
-    emit updateUI(DataReceived);
+void MyRobot::readyRead() { // Fonction de récupération des données des capteurs
+    DataReceived = socket->readAll(); // Récupération des données
+    emit updateUI(DataReceived); // Envoie des données dans le signal updateUI
 
 }
 
