@@ -51,6 +51,10 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     {
         Robot.camDroite();
     }
+    if (event->key() == Qt::Key_Space)
+    {
+        Robot.stop();
+    }
 }
 
 void MainWindow::on_buttonConnect_clicked()
