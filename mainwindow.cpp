@@ -143,13 +143,13 @@ void MainWindow::affichage(QByteArray data)
     // Affichage Infrarouges
     unsigned char dataInfraDroite = data[4];
     float infraDroite = float(dataInfraDroite);
-    ui->lcdInfraDroite->display(int(infraDroite));
+    ui->lcdInfraDroite->display(abs(int(infraDroite)));
     float infraHaut = float(data[11]);
-    ui->lcdInfraHaut->display(int(infraHaut));
+    ui->lcdInfraHaut->display(abs(int(infraHaut)));
     float infraGauche = float(data[3]);
-    ui->lcdInfraGauche->display(int(infraGauche));
+    ui->lcdInfraGauche->display(abs(int(infraGauche)));
     float infraBas = float(data[12]);
-    ui->lcdInfraBas->display(int(infraBas));
+    ui->lcdInfraBas->display(abs(int(infraBas)));
 
     // Affichage Position
 
